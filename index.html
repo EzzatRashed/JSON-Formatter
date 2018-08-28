@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="css/styles.css">
+	<title>JSON Formatter</title>
+</head>
+<body>
+	<nav class="navbar noselect">
+		<div class="navbar_nav">
+			<button class="nav_button" onclick="changeOrientation();">Rotate</button>
+			<button id="styles_button" class="nav_button" onclick="openStylesMenu();">Styles </button>
+			<div id="styles_menu">
+				<a class="style" onclick="changeStyle(this);" data-class="">Default</a>
+				<a class="style" onclick="changeStyle(this);" data-class="table_striped">Stripped</a>
+				<a class="style" onclick="changeStyle(this);" data-class="table_dark">Dark</a>
+			</div>
+			<button class="nav_button" onclick="convertJSON();">Run »</button>
+		</div>
+	</nav>
+	<div id="container" class="horizontal">
+		<textarea id="input"></textarea>
+
+		<div id="handler"></div>
+		
+		<div id="output">
+			<table id="table" class="">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">First</th>
+						<th scope="col">Last</th>
+						<th scope="col">Handle</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">1</th>
+						<td>Mark</td>
+						<td>Otto</td>
+						<td>@mdo</td>
+					</tr>
+					<tr>
+						<th scope="row">2</th>
+						<td>Jacob</td>
+						<td>Thornton</td>
+						<td>@fat</td>
+					</tr>
+					<tr>
+						<th scope="row">3</th>
+						<td>Larry</td>
+						<td>the Bird</td>
+						<td>@twitter</td>
+					</tr>
+					<tr>
+						<th scope="row">4</th>
+						<td>Mark</td>
+						<td>Otto</td>
+						<td>@mdo</td>
+					</tr>
+					<tr>
+						<th scope="row">5</th>
+						<td>Jacob</td>
+						<td>Thornton</td>
+						<td>@fat</td>
+					</tr>
+					<tr>
+						<th scope="row">6</th>
+						<td>Larry</td>
+						<td>the Bird</td>
+						<td>@twitter</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<script src="js/main.js"></script>
+</body>
+</html>
