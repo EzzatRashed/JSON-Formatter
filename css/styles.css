@@ -240,6 +240,16 @@ body{
 	background-color: #ddd !important;
 }
 
+.table_bordered th,
+.table_bordered td {
+  border: 1px solid #dee2e6 !important;
+}
+
+.table_bordered thead th,
+.table_bordered thead td {
+  border-bottom-width: 2px;
+}
+
 /* @media print {
 	body{
 		background-color: #fff;

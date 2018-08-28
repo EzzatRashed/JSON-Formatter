@@ -13,9 +13,11 @@
 			<button class="nav_button" onclick="changeOrientation();">Rotate</button>
 			<button id="styles_button" class="nav_button" onclick="openStylesMenu();">Styles </button>
 			<div id="styles_menu">
-				<a class="style" onclick="changeStyle(this);" data-class="">Default</a>
-				<a class="style" onclick="changeStyle(this);" data-class="table_striped">Stripped</a>
-				<a class="style" onclick="changeStyle(this);" data-class="table_dark">Dark</a>
+				<a class="style" onclick="changeStyle(this);" data-class="table_bordered">Default</a>
+				<a class="style" onclick="changeStyle(this);" data-class="">Borderless</a>
+				<a class="style" onclick="changeStyle(this);" data-class="table_striped table_bordered">Stripped</a>
+				<a class="style" onclick="changeStyle(this);" data-class="table_striped">Stripped Borderless</a>
+				<a class="style" onclick="changeStyle(this);" data-class="table_dark">Dark Borderless</a>
 			</div>
 			<button class="nav_button" onclick="convertJSON();">Run »</button>
 		</div>
@@ -26,7 +28,7 @@
 		<div id="handler"></div>
 		
 		<div id="output">
-			<table id="table" class="">
+			<table id="table" class="table_bordered">
 				<thead>
 					<tr>
 						<th scope="col">#</th>
