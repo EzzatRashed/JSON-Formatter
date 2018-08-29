@@ -198,7 +198,7 @@ body{
 	flex: 0 0 auto;
 }
 
-#table {
+table{
 	border-collapse: collapse;
 }
 
@@ -207,18 +207,27 @@ body{
 	background-color: white;
 }
 
+th:first-child{
+	width: 1px;
+	padding-left: 16px !important;
+	padding-right: 16px !important;
+}
+
 #table th,
 #table td {
 	padding: 0.75rem;
-	vertical-align: top;
 	padding-left: 20px;
 	text-align: left;
 	border-top: 1px solid #dee2e6;
 }
 
-#table thead th {
+#table tbody {
+	border: #dee2e6 2px solid;
+}
+
+#table .head th {
 	vertical-align: bottom;
-	border-bottom: 2px solid #dee2e6;
+	border-bottom: 2px solid #dee2e6 !important;
 }
 
 #table tbody + tbody {
@@ -232,7 +241,7 @@ body{
 
 .table_dark th,
 .table_dark td,
-.table_dark thead th {
+.table_dark .head th {
 	border-color: #32383e !important;
 }
 
@@ -245,8 +254,8 @@ body{
   border: 1px solid #dee2e6 !important;
 }
 
-.table_bordered thead th,
-.table_bordered thead td {
+.table_bordered .head th,
+.table_bordered .head td {
   border-bottom-width: 2px;
 }
 
