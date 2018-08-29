@@ -41,12 +41,14 @@ function buildTableArray(array){
     for (let i = 0; i < array.length; i++) {
         returnedHTML.push('<tr><td>' + (i+1) + '</td>');
         arrayKeys.forEach(function(key) {
-            if (array[i][key] == undefined) { 
+            if (array[i][key] == undefined || array[i][key] == null) { 
                 returnedHTML.push('<td></td>');
-            }else if (Array.isArray(array[i][key])){
-                returnedHTML.push('<td><table>' + buildTableArray(array[i][key]) + '</table></td>');
-            }else{
+            } else if (typeof(array[i][key]) == 'string' || typeof(array[i][key]) == 'boolean'){
                 returnedHTML.push('<td>' + array[i][key] + '</td>');
+            } else if (Array.isArray(array[i][key])) {
+                returnedHTML.push('<td class="table_cell"><table>' + buildTableArray(array[i][key]) + '</table></td>');
+            } else if (Object.keys(array[i][key]).length >= 1) {
+                returnedHTML.push('<td class="table_cell"><table>' + buildTableObject(array[i][key]) + '</table></td>');
             }
         });
         returnedHTML.push('</tr>');
@@ -55,7 +57,31 @@ function buildTableArray(array){
 }
 
 function buildTableObject(object){
+    var objectKeys = [];
+    var returnedHTML = [];
+    for (key in object) {
+        objectKeys = objectKeys.concat(key);
+    }
+    returnedHTML.push('<tr class="head">' +
+    objectKeys.map(function(value){
+        value = capitalizeFirstLetter(value);
+        return `<th scope="col">${value}</th>`;
+    }).join("")
+    + '</tr>');
+    objectKeys.forEach(function(key) {
+        if (object[key] == undefined || object[key] == null) { 
+            returnedHTML.push('<td></td>');
+        } else if (typeof(object[key]) == 'string' || typeof(object[key]) == 'boolean'){
+            returnedHTML.push('<td>' + object[key] + '</td>');
+        } else if (Array.isArray(object[key])){
+            returnedHTML.push('<td class="table_cell"><table>' + buildTableArray(object[key]) + '</table></td>');
+        } else if (Object.keys(object[key]).length >= 1) {
+            returnedHTML.push('<td class="table_cell"><table>' + buildTableObject(object[key]) + '</table></td>');
+        }
+    });
+    returnedHTML.push('</tr>');
 
+    return returnedHTML.join('');
 }
 
 function convertJSON(){
@@ -129,4 +155,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
             stylesMenu.classList.remove('visible');
         }
     });
+
+    var initialValue = '{"employees":[\n  { "firstName":"John", "lastName":"Doe" },\n  { "firstName":"Anna", "lastName":"Smith" },\n  { "firstName":"Peter", "lastName":"Jones" }\n]}';
+    // Sorry about this crude indentation :D
+
+    input.value = initialValue;
 });
