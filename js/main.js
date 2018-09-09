@@ -43,7 +43,7 @@ function buildTableArray(array){
         arrayKeys.forEach(function(key) {
             if (array[i][key] == undefined || array[i][key] == null) { 
                 returnedHTML.push('<td></td>');
-            } else if (typeof(array[i][key]) == 'string' || typeof(array[i][key]) == 'boolean'){
+            } else if (typeof(array[i][key]) == 'string' || typeof(array[i][key]) == 'boolean' || typeof(array[i][key]) == 'number'){
                 returnedHTML.push('<td>' + array[i][key] + '</td>');
             } else if (Array.isArray(array[i][key])) {
                 returnedHTML.push('<td class="table_cell"><table>' + buildTableArray(array[i][key]) + '</table></td>');
@@ -71,7 +71,7 @@ function buildTableObject(object){
     objectKeys.forEach(function(key) {
         if (object[key] == undefined || object[key] == null) { 
             returnedHTML.push('<td></td>');
-        } else if (typeof(object[key]) == 'string' || typeof(object[key]) == 'boolean'){
+        } else if (typeof(object[key]) == 'string' || typeof(object[key]) == 'boolean' || typeof(object[key]) == 'number'){
             returnedHTML.push('<td>' + object[key] + '</td>');
         } else if (Array.isArray(object[key])){
             returnedHTML.push('<td class="table_cell"><table>' + buildTableArray(object[key]) + '</table></td>');
