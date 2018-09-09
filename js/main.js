@@ -30,6 +30,9 @@ function buildTableArray(array){
     for (let i = 0; i < array.length; i++) {
         arrayKeys = arrayKeys.concat(Object.keys(array[i]));
     }
+    if(!arrayKeys.some(isNaN)){
+        arrayKeys = ['Object'];
+    }
     arrayKeys = new Set(arrayKeys);
     arrayKeys = Array.from(arrayKeys);
     returnedHTML.push('<tr class="head"><th scope="col">#</th>' +
@@ -41,12 +44,14 @@ function buildTableArray(array){
     for (let i = 0; i < array.length; i++) {
         returnedHTML.push('<tr><td>' + (i+1) + '</td>');
         arrayKeys.forEach(function(key) {
-            if (array[i][key] == undefined || array[i][key] == null) { 
+            if ((array[i][key] == undefined || array[i][key] == null) && (array[i] == null || array[i] == undefined)) { 
                 returnedHTML.push('<td></td>');
             } else if (typeof(array[i][key]) == 'string' || typeof(array[i][key]) == 'boolean' || typeof(array[i][key]) == 'number'){
                 returnedHTML.push('<td>' + array[i][key] + '</td>');
             } else if (Array.isArray(array[i][key])) {
                 returnedHTML.push('<td class="table_cell"><table>' + buildTableArray(array[i][key]) + '</table></td>');
+            } else if (typeof(array[i]) == 'string' || typeof(array[i]) == 'boolean' || typeof(array[i]) == 'number'){
+                returnedHTML.push('<td>' + array[i] + '</td>');
             } else if (Object.keys(array[i][key]).length >= 1) {
                 returnedHTML.push('<td class="table_cell"><table>' + buildTableObject(array[i][key]) + '</table></td>');
             }
